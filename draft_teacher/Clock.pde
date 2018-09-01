@@ -58,7 +58,6 @@ class Clock {
   float[]dm=new float[8];//下の部分比を求める
   float[]dia=new float[8];//下の部分の直径を求める
   int dr=10;
-  int fontSize=12; 
   boolean[] checklocation=new boolean[8];
   float planetTheta;
   //==================what planet;
@@ -70,6 +69,11 @@ class Clock {
 
   //================hoverの音
   AudioSample hover;
+
+  //================fontの読み込み
+  PFont hel_30 = loadFont("Helvetica-30.vlw");
+  PFont hel_20 = loadFont("Helvetica-20.vlw");
+  PFont hel_12 = loadFont("Helvetica-12.vlw");
 
   Clock(float _diam, AudioSample _hover) {
     diam=_diam;
@@ -205,8 +209,10 @@ class Clock {
     String EarthTime=int(day)+" days";
     fill(earthCol, 50, 75);
     textAlign(CENTER);
-    textSize(15);
+    textFont(hel_30);
+    textSize(30);
     text("Earth", centerEarth.x, 70);
+    textFont(hel_30);
     textSize(30);
     text(EarthTime, centerEarth.x, centerEarth.y+150);
   }
@@ -216,8 +222,10 @@ class Clock {
     String planetTime=int(dayPlanets)+" days";
     fill(col[choosePlanet], 50, 75);
     textAlign(CENTER);
-    textSize(15);
+    textFont(hel_30);
+    textSize(30);
     text(planet[choosePlanet], centerPlanets.x, 70);
+    textFont(hel_30);
     textSize(30);
     text(planetTime, centerPlanets.x, centerPlanets.y+150);
   }
@@ -415,8 +423,10 @@ class Clock {
     textAlign(CENTER);
     fill(255);
     noStroke();
+    textFont(hel_20);
     textSize(20);
     text("speed", width/2, height*3/5-30);
+    textFont(hel_30);
     textSize(30);
     text(speedX, width/2, height*3/5+30);
   }
@@ -483,7 +493,8 @@ class Clock {
   //====================下の部分のそれぞれがどのplanetsかを表示
   void informPlanets() {
     textAlign(CENTER);
-    textSize(fontSize);
+    textFont(hel_12);
+    textSize(12);
     for (int i=0; i<location.length; i++) {
       fill(col[i], 50, 75);
       text(planet[i], location[i].x, location[i].y+dia[i]);
