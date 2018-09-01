@@ -56,6 +56,9 @@ void draw() {
 
   //上のtextの表示
   clock.drawSpeed();
+  
+  //earthの上に1dayを表示
+  clock.drawDay();
 
   //earthの針みたいな部分　
   clock.earthNeedle();

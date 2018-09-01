@@ -126,7 +126,7 @@ class Clock {
     planetsImage[1]=loadImage("Venus.png");
     planetsImage[2]=loadImage("Mars.png");
     planetsImage[3]=loadImage("Jupiter.png");
-    planetsImage[4]=loadImage("Saturn-01.png");
+    planetsImage[4]=loadImage("Saturn.png");
     planetsImage[5]=loadImage("Uranus.png");
     planetsImage[6]=loadImage("Neptune.png");
     planetsImage[7]=loadImage("Moon.png");
@@ -279,7 +279,7 @@ class Clock {
     //============地球の公転周期
     Slider earthRoC;
     earthRoC=cp5.addSlider("The revolution cycle")
-      .setPosition(width/4+50, 210)
+      .setPosition(width/4+50, 280)
       .setRange(0, RC[6])
       .setValue(earthRC)
       .setSize(100, 10)
@@ -308,7 +308,7 @@ class Clock {
     //============地球の表面積
     Slider earthsa;
     earthsa=cp5.addSlider("The surface area")
-      .setPosition(width/4+50, 280)
+      .setPosition(width/4+50, 210)
       .setRange(0, SA[1])
       .setValue(earthSA)
       .setSize(100, 10)
@@ -371,7 +371,7 @@ class Clock {
     //============planetsの公転周期
     Slider planetrc;
     planetrc=cp5.addSlider("The revolution cycle ")
-      .setPosition(width*3/4+50, 210)
+      .setPosition(width*3/4+50, 280)
       .setRange(0, RC[6])
       .setValue(RC[choosePlanet])
       .setSize(100, 10)
@@ -403,7 +403,7 @@ class Clock {
     //============planetsの表面積
     Slider planetsa;
     planetsa=cp5.addSlider("The surface area ")
-      .setPosition(width*3/4+50, 280)
+      .setPosition(width*3/4+50, 210)
       .setRange(0, SA[3])
       .setValue(SA[choosePlanet])
       .setSize(100, 10)
@@ -416,19 +416,35 @@ class Clock {
     //上の文字も部分
     cp5.getController("The surface area ").getCaptionLabel().align(ControlP5.LEFT, ControlP5.TOP_OUTSIDE).setPaddingX(0);
   }
+  
+  //=====================earthの上にdayと書く
+  void drawDay(){
+    textAlign(CENTER);
+    fill(255);
+    noStroke();
+    textFont(hel_30);
+    textSize(30);
+    text("1",centerEarth.x,centerEarth.y-150);
+    textFont(hel_20);
+    textSize(20);
+    text("day",centerEarth.x+30,centerEarth.y-150);
+  }
 
   //======================上のtextのspeedが何倍かを表示
   void drawSpeed() {
-    String speedX="×"+dDay[choosePlanet]+" days";
+    String speedX="×"+dDay[choosePlanet];
     textAlign(CENTER);
     fill(255);
     noStroke();
     textFont(hel_20);
     textSize(20);
-    text("speed", width/2, height*3/5-30);
+    //text("speed", centerPlanets.x,centerPlanets.y-190);
     textFont(hel_30);
     textSize(30);
-    text(speedX, width/2, height*3/5+30);
+    text(speedX, centerPlanets.x,centerPlanets.y-150);
+    textFont(hel_20);
+    textSize(20);
+    text("day",centerPlanets.x+70,centerPlanets.y-150);
   }
 
   //====================下のplanetsを頑張る
@@ -497,7 +513,7 @@ class Clock {
     textSize(12);
     for (int i=0; i<location.length; i++) {
       fill(col[i], 50, 75);
-      text(planet[i], location[i].x, location[i].y+dia[i]);
+      text(planet[i], location[i].x, location[i].y+50);
     }
   }
 }
