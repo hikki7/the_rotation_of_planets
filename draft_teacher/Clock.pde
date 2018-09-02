@@ -71,6 +71,7 @@ class Clock {
   AudioSample hover;
 
   //================fontの読み込み
+  PFont hel_50 = loadFont("Helvetica-50.vlw");
   PFont hel_30 = loadFont("Helvetica-30.vlw");
   PFont hel_20 = loadFont("Helvetica-20.vlw");
   PFont hel_12 = loadFont("Helvetica-12.vlw");
@@ -123,12 +124,12 @@ class Clock {
 
     //============ここからはimageの読み込み
     planetsImage[0]=loadImage("Mercury.png");
-    planetsImage[1]=loadImage("Venus.png");
-    planetsImage[2]=loadImage("Mars.png");
-    planetsImage[3]=loadImage("Jupiter.png");
+    planetsImage[1]=loadImage("Venus01.png");
+    planetsImage[2]=loadImage("Mars01.png");
+    planetsImage[3]=loadImage("Jupiter01.png");
     planetsImage[4]=loadImage("Saturn.png");
-    planetsImage[5]=loadImage("Uranus.png");
-    planetsImage[6]=loadImage("Neptune.png");
+    planetsImage[5]=loadImage("Uranus01.png");
+    planetsImage[6]=loadImage("Neptune01.png");
     planetsImage[7]=loadImage("Moon.png");
     earthImage=loadImage("Earth.png");
   }
@@ -159,8 +160,8 @@ class Clock {
   //===================地球の時間の部分
   void drawEarth() {
     stroke(255);
-    strokeWeight(4);
-    for (int i=0; i<diameter*2/3; i+=4) {
+    strokeWeight(1);
+    for (int i=0; i<diameter*2/3; i+=1) {
       PVector locationPlanet=new PVector(centerEarth.x+i*cos(theta), centerEarth.y+i*sin(theta)); 
       point(locationPlanet.x, locationPlanet.y);
     }
@@ -169,8 +170,8 @@ class Clock {
   //===============planetの時間の部分
   void drawPlanet() {
     stroke(255);
-    strokeWeight(4);
-    for (int i=0; i<diameter*2/3; i+=4) {
+    strokeWeight(1);
+    for (int i=0; i<diameter*2/3; i+=1) {
       PVector locationPlanet=new PVector(centerPlanets.x+i*cos(planetTheta), centerPlanets.y+i*sin(planetTheta)); 
       point(locationPlanet.x, locationPlanet.y);
     }
@@ -206,28 +207,36 @@ class Clock {
 
   //=================地球のtext
   void textEarth() {
-    String EarthTime=int(day)+" days";
+    String EarthTime=int(day)+" ";
     fill(earthCol, 50, 75);
     textAlign(CENTER);
-    textFont(hel_30);
-    textSize(30);
+    textFont(hel_50);
+    textSize(50);
     text("Earth", centerEarth.x, 70);
-    textFont(hel_30);
-    textSize(30);
-    text(EarthTime, centerEarth.x, centerEarth.y+150);
+    textAlign(RIGHT);
+    textFont(hel_50);
+    textSize(50);
+    text(EarthTime, centerEarth.x+40, centerEarth.y+230);
+    textFont(hel_20);
+    textSize(20);
+    text("days",centerEarth.x+80,centerEarth.y+230);
   }
 
   //===============planetsのtext
   void textPlanets() {
-    String planetTime=int(dayPlanets)+" days";
+    String planetTime=int(dayPlanets)+" ";
     fill(col[choosePlanet], 50, 75);
     textAlign(CENTER);
-    textFont(hel_30);
-    textSize(30);
+    textFont(hel_50);
+    textSize(50);
     text(planet[choosePlanet], centerPlanets.x, 70);
-    textFont(hel_30);
-    textSize(30);
-    text(planetTime, centerPlanets.x, centerPlanets.y+150);
+    textAlign(RIGHT);
+    textFont(hel_50);
+    textSize(50);
+    text(planetTime, centerPlanets.x+40, centerPlanets.y+230);
+    textFont(hel_20);
+    textSize(20);
+    text("days",centerPlanets.x+90,centerPlanets.y+230);
   }
 
   //==============地球のgui
@@ -235,10 +244,10 @@ class Clock {
     noStroke();
     Slider earthRadius;
     earthRadius=cp5.addSlider("The radius")
-      .setPosition(200, 140)
+      .setPosition(250, 140)
       .setRange(0, R[3])
       .setValue(earthR)
-      .setSize(100, 10)
+      .setSize(200, 10)
       .setColorValueLabel(earthColor);
 
     //下の数字
@@ -253,7 +262,7 @@ class Clock {
       .setPosition(width/4+50, 140)
       .setRange(0, M[3])
       .setValue(earthM)
-      .setSize(100, 10)
+      .setSize(200, 10)
       .setColorValueLabel(earthColor);
 
     //下の数字
@@ -265,10 +274,10 @@ class Clock {
     //=============地球の重力
     Slider earthGravity;
     earthGravity=cp5.addSlider("The gravity")
-      .setPosition(200, 210)
+      .setPosition(250, 210)
       .setRange(0, G[3])
       .setValue(earthG)
-      .setSize(100, 10)
+      .setSize(200, 10)
       .setColorValueLabel(earthColor);
 
     //下の数字
@@ -282,7 +291,7 @@ class Clock {
       .setPosition(width/4+50, 280)
       .setRange(0, RC[6])
       .setValue(earthRC)
-      .setSize(100, 10)
+      .setSize(200, 10)
       .setColorValueLabel(earthColor);
 
     //下の数字
@@ -294,10 +303,10 @@ class Clock {
     //============地球の自転周期
     Slider earthrp;
     earthrp=cp5.addSlider("The rotation period")
-      .setPosition(200, 280)
+      .setPosition(250, 280)
       .setRange(0, RP[1])
       .setValue(earthRP)
-      .setSize(100, 10)
+      .setSize(200, 10)
       .setColorValueLabel(earthColor);
 
     //下の数字
@@ -309,9 +318,9 @@ class Clock {
     Slider earthsa;
     earthsa=cp5.addSlider("The surface area")
       .setPosition(width/4+50, 210)
-      .setRange(0, SA[1])
+      .setRange(0, SA[3])
       .setValue(earthSA)
-      .setSize(100, 10)
+      .setSize(200, 10)
       .setColorValueLabel(earthColor);
 
     //下の数字
@@ -325,10 +334,10 @@ class Clock {
     //=============planetsの半径
     Slider planetRadius;
     planetRadius=cp5.addSlider("The radius ")
-      .setPosition(width/2+200, 140)
+      .setPosition(width/2+250, 140)
       .setRange(0, R[3])
       .setValue(R[choosePlanet])
-      .setSize(100, 10)
+      .setSize(200, 10)
       .setColorForeground(Col[choosePlanet])
       .setColorBackground(backCol[choosePlanet])
       .setColorValueLabel(Col[choosePlanet]);
@@ -342,7 +351,7 @@ class Clock {
       .setPosition(width*3/4+50, 140)
       .setRange(0, M[3])
       .setValue(M[choosePlanet])
-      .setSize(100, 10)
+      .setSize(200, 10)
       .setColorForeground(Col[choosePlanet])
       .setColorBackground(backCol[choosePlanet])
       .setColorValueLabel(Col[choosePlanet]);
@@ -355,10 +364,10 @@ class Clock {
     //=============planetsの重力
     Slider planetgravity;
     planetgravity=cp5.addSlider("The gravity ")
-      .setPosition(width/2+200, 210)
+      .setPosition(width/2+250, 210)
       .setRange(0, G[3])
       .setValue(G[choosePlanet])
-      .setSize(100, 10)
+      .setSize(200, 10)
       .setColorForeground(Col[choosePlanet])
       .setColorBackground(backCol[choosePlanet])
       .setColorValueLabel(Col[choosePlanet]);
@@ -374,7 +383,7 @@ class Clock {
       .setPosition(width*3/4+50, 280)
       .setRange(0, RC[6])
       .setValue(RC[choosePlanet])
-      .setSize(100, 10)
+      .setSize(200, 10)
       .setColorForeground(Col[choosePlanet])
       .setColorBackground(backCol[choosePlanet])
       .setColorValueLabel(Col[choosePlanet]);
@@ -387,10 +396,10 @@ class Clock {
     //============planetsの自転周期
     Slider planetrp;
     planetrp=cp5.addSlider("The rotation period ")
-      .setPosition(width/2+200, 280)
+      .setPosition(width/2+250, 280)
       .setRange(0, RP[1])
       .setValue(RP[choosePlanet])
-      .setSize(100, 10)
+      .setSize(200, 10)
       .setColorForeground(Col[choosePlanet])
       .setColorBackground(backCol[choosePlanet])
       .setColorValueLabel(Col[choosePlanet]);
@@ -406,7 +415,7 @@ class Clock {
       .setPosition(width*3/4+50, 210)
       .setRange(0, SA[3])
       .setValue(SA[choosePlanet])
-      .setSize(100, 10)
+      .setSize(200, 10)
       .setColorForeground(Col[choosePlanet])
       .setColorBackground(backCol[choosePlanet])
       .setColorValueLabel(Col[choosePlanet]);
@@ -416,35 +425,36 @@ class Clock {
     //上の文字も部分
     cp5.getController("The surface area ").getCaptionLabel().align(ControlP5.LEFT, ControlP5.TOP_OUTSIDE).setPaddingX(0);
   }
-  
+
   //=====================earthの上にdayと書く
-  void drawDay(){
+  void drawDay() {
     textAlign(CENTER);
     fill(255);
     noStroke();
-    textFont(hel_30);
-    textSize(30);
-    text("1",centerEarth.x,centerEarth.y-150);
+    textFont(hel_50);
+    textSize(50);
+    text("1", centerEarth.x, centerEarth.y-230);
     textFont(hel_20);
     textSize(20);
-    text("day",centerEarth.x+30,centerEarth.y-150);
+    text("day", centerEarth.x+40, centerEarth.y-230);
   }
 
   //======================上のtextのspeedが何倍かを表示
   void drawSpeed() {
-    String speedX="×"+dDay[choosePlanet];
+    String speedX=""+dDay[choosePlanet];
     textAlign(CENTER);
     fill(255);
     noStroke();
     textFont(hel_20);
     textSize(20);
     //text("speed", centerPlanets.x,centerPlanets.y-190);
-    textFont(hel_30);
-    textSize(30);
-    text(speedX, centerPlanets.x,centerPlanets.y-150);
+    textFont(hel_50);
+    textSize(50);
+    text("×",centerPlanets.x-100,centerPlanets.y-230);
+    text(speedX, centerPlanets.x, centerPlanets.y-230);
     textFont(hel_20);
     textSize(20);
-    text("day",centerPlanets.x+70,centerPlanets.y-150);
+    text("day", centerPlanets.x+90, centerPlanets.y-230);
   }
 
   //====================下のplanetsを頑張る
