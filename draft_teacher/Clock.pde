@@ -72,6 +72,7 @@ class Clock {
 
   //================fontの読み込み
   PFont hel_50 = loadFont("Helvetica-50.vlw");
+  PFont hel_40 = loadFont("Helvetica-40.vlw");
   PFont hel_30 = loadFont("Helvetica-30.vlw");
   PFont hel_20 = loadFont("Helvetica-20.vlw");
   PFont hel_12 = loadFont("Helvetica-12.vlw");
@@ -210,8 +211,8 @@ class Clock {
     String EarthTime=int(day)+" ";
     fill(earthCol, 50, 75);
     textAlign(CENTER);
-    textFont(hel_50);
-    textSize(50);
+    textFont(hel_40);
+    textSize(40);
     text("Earth", centerEarth.x, 80);
     textAlign(RIGHT);
     textFont(hel_50);
@@ -227,8 +228,8 @@ class Clock {
     String planetTime=int(dayPlanets)+" ";
     fill(col[choosePlanet], 50, 75);
     textAlign(CENTER);
-    textFont(hel_50);
-    textSize(50);
+    textFont(hel_40);
+    textSize(40);
     text(planet[choosePlanet], centerPlanets.x, 80);
     textAlign(RIGHT);
     textFont(hel_50);
