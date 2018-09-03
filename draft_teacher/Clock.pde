@@ -501,6 +501,7 @@ class Clock {
     for (int i=0; i<checklocation.length; i++) {
       if (checklocation[i]&&mousePressed) {
         //hover.play();
+        count=0;
         delay(40);
         hover.trigger();
       }
@@ -510,7 +511,7 @@ class Clock {
   //=====================mouseが上にきているかどうか
   boolean checkBoolean(PVector loc, float diam) {
     if (dist(mouseX, mouseY, loc.x, loc.y)<diam) {
-      count=0;
+      //count=0;
       return true;
     } else {
       return false;

@@ -98,7 +98,6 @@ void draw() {
 }
 
 void keyPressed() {
-
   if (key=='a'||key=='A') {
     //水星
     clock.choosePlanet=0;
