@@ -56,7 +56,7 @@ void draw() {
 
   //上のtextの表示
   clock.drawSpeed();
-  
+
   //earthの上に1dayを表示
   clock.drawDay();
 
@@ -92,7 +92,7 @@ void draw() {
 
   //下の部分のplanetsのtextの部分
   clock.informPlanets();
-  
+
   //hoverしたら音を鳴らす
   clock.playAudio();
 }
